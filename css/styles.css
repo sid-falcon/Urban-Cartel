@@ -1,0 +1,258 @@
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0fdfa; /* teal-50 */
+}
+
+/* Toast Notification */
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(200%);
+    opacity: 0;
+    z-index: 50;
+}
+#toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+#toast.success { background-color: #0d9488; color: white; } /* teal-600 */
+#toast.error { background-color: #EF4444; color: white; } /* Red-500 */
+#toast.info { background-color: #3B82F6; color: white; } /* Blue-500 */
+
+/* Map Container */
+#map { 
+    height: 300px; 
+    width: 100%; 
+    border-radius: 0.5rem; 
+}
+
+/* Distance Badge */
+.distance-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0f766e;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Payment Modal Tabs */
+.payment-tab.active {
+    border-bottom: 2px solid #0d9488; /* teal-600 */
+    color: #0d9488;
+    font-weight: 600;
+}
+.payment-content { display: none; }
+.payment-content.active { display: block; }
+
+/* --- VERTICAL AMAZON-STYLE TIMELINE --- */
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 10px 10px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 35px; /* Space for the connecting line */
+}
+
+.step-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Vertical Line Connector */
+.step-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 30px; /* Start below the circle */
+    left: 14px; /* Center with 30px circle */
+    width: 3px;
+    height: calc(100% - 30px);
+    background-color: #e5e7eb; /* Gray-200 default */
+    z-index: 1;
+}
+
+/* Colored Line for Completed Steps */
+.step-item.completed:not(:last-child)::after {
+    background-color: #10b981; /* Emerald-500 (Generic success for line) */
+}
+
+/* Step Icon Circle */
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    flex-shrink: 0;
+    color: #9ca3af;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Content Text */
+.step-content {
+    margin-left: 16px;
+    margin-top: 4px;
+}
+
+.step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.step-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+}
+
+/* --- STATUS SPECIFIC STYLES --- */
+
+/* Completed State */
+.step-item.completed .step-circle {
+    background-color: currentColor; /* Takes the text-color set in JS */
+    border-color: currentColor;
+    color: #fff !important; /* Icon becomes white */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Active State (Loading) */
+.step-item.active .step-circle {
+    background-color: #fff;
+    border-color: currentColor; /* Takes specific step color */
+    color: currentColor;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12); 
+}
+.step-item.active .step-circle svg {
+    animation: spin 3s linear infinite;
+}
+
+/* Pending State */
+.step-item.pending .step-circle {
+    border-style: dashed;
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+    color: #d1d5db;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Wishlist Heart Animation */
+.btn-heart { transition: transform 0.2s; }
+.btn-heart:active { transform: scale(1.3); }
+.btn-heart.active { fill: #EF4444; color: #EF4444; }
+
+/* --- Social Login Buttons --- */
+.social-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+.social-separator::before, .social-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+.social-separator::before { margin-right: .5em; }
+.social-separator::after { margin-left: .5em; }
+
+.social-login-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #e5e7eb;
+}
+
+.social-btn.google {
+    background-color: #fff;
+    color: #374151;
+}
+.social-btn.google:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.social-btn.facebook {
+    background-color: #1877F2;
+    color: white;
+    border-color: #1877F2;
+}
+.social-btn.facebook:hover {
+    background-color: #166fe5;
+}
+
+/* --- Dual Timeline Layout (tracking modal) --- */
+.tracking-flex {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.tracking-left {
+    flex: 1.2;
+    min-width: 260px;
+}
+.tracking-right {
+    flex: 0.9;
+    min-width: 200px;
+    background: #f8fafc;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e6eef0;
+}
+.tracking-right h4 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.checkpoint {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+.checkpoint .dot {
+    width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; margin-top: 6px;
+}
+.checkpoint .dot.completed { background: #10b981; }
+.checkpoint .meta { font-size: 0.9rem; color: #374151; }
+.checkpoint .meta .small { display:block; font-size: 0.8rem; color: #6b7280; }

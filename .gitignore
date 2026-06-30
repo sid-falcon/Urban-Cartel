@@ -1,0 +1,10 @@
+# Real Firebase config (contains project keys) - copy from firebase-config.example.js
+js/firebase-config.js
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.log
+
+# Node (in case tooling is added later)
+node_modules/
