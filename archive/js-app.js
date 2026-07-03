@@ -35,7 +35,7 @@ import {
 
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'urban-plus-app';
 const firebaseConfig = {
-  apiKey: "AIzaSyCuXdVwmF5q9aJt9ZXBC7S95e9dCzsY07U",
+  apiKey: "",
   authDomain: "live-mart-da577.firebaseapp.com",
   projectId: "live-mart-da577",
   storageBucket: "live-mart-da577.firebasestorage.app",
